@@ -14,6 +14,8 @@
 		E28D24C51C21262B00387C36 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D24C41C21262B00387C36 /* CardsViewController.swift */; };
 		E28D24C71C21287C00387C36 /* DraggableImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28D24C61C21287C00387C36 /* DraggableImageView.xib */; };
 		E28D24C91C21291800387C36 /* DraggableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D24C81C21291800387C36 /* DraggableImageView.swift */; };
+		E28D24CC1C216C3900387C36 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D24CA1C216C3900387C36 /* ProfileViewController.swift */; };
+		E28D24CD1C216C3900387C36 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E28D24CB1C216C3900387C36 /* ProfileViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E28D24C41C21262B00387C36 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		E28D24C61C21287C00387C36 /* DraggableImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraggableImageView.xib; sourceTree = "<group>"; };
 		E28D24C81C21291800387C36 /* DraggableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableImageView.swift; sourceTree = "<group>"; };
+		E28D24CA1C216C3900387C36 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E28D24CB1C216C3900387C36 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				E28D24C41C21262B00387C36 /* CardsViewController.swift */,
 				E28D24C61C21287C00387C36 /* DraggableImageView.xib */,
 				E28D24C81C21291800387C36 /* DraggableImageView.swift */,
+				E28D24CA1C216C3900387C36 /* ProfileViewController.swift */,
+				E28D24CB1C216C3900387C36 /* ProfileViewController.xib */,
 			);
 			path = TinderLab;
 			sourceTree = "<group>";
@@ -131,6 +137,7 @@
 				E28D24BD1C211F7F00387C36 /* LaunchScreen.storyboard in Resources */,
 				E28D24C71C21287C00387C36 /* DraggableImageView.xib in Resources */,
 				E28D24BA1C211F7F00387C36 /* Assets.xcassets in Resources */,
+				E28D24CD1C216C3900387C36 /* ProfileViewController.xib in Resources */,
 				E28D24B81C211F7F00387C36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +151,7 @@
 			files = (
 				E28D24C51C21262B00387C36 /* CardsViewController.swift in Sources */,
 				E28D24C91C21291800387C36 /* DraggableImageView.swift in Sources */,
+				E28D24CC1C216C3900387C36 /* ProfileViewController.swift in Sources */,
 				E28D24B31C211F7F00387C36 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

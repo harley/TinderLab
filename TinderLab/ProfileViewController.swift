@@ -1,5 +1,5 @@
 //
-//  CardsViewController.swift
+//  ProfileViewController.swift
 //  TinderLab
 //
 //  Created by Harley Trung on 12/16/15.
@@ -8,22 +8,17 @@
 
 import UIKit
 
-class CardsViewController: UIViewController {
+class ProfileViewController: UIViewController {
+    
+    @IBAction func onNavbarTap(sender: UITapGestureRecognizer) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBOutlet weak var profileImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let draggableImageView = DraggableImageView(frame: CGRect(x: 8, y: 72, width: 304, height: 304))
-        view.addSubview(draggableImageView)
-        
-        let tap = UITapGestureRecognizer(target: self, action: "onTapDraggable")
-        draggableImageView.addGestureRecognizer(tap)
-    }
-    
-    func onTapDraggable() {
-        let profileVC = ProfileViewController()
-        presentViewController(profileVC, animated: true) { () -> Void in
-        }
     }
     
     override func didReceiveMemoryWarning() {

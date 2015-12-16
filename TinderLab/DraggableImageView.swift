@@ -18,7 +18,7 @@ class DraggableImageView: UIView {
         let translation = sender.translationInView(superview)
         
         if sender.state == .Began {
-            originalCenter = imageView.center
+            originalCenter = center
         } else if sender.state == .Changed {
             center.x = location.x
             
@@ -28,6 +28,7 @@ class DraggableImageView: UIView {
             transform = CGAffineTransformMakeRotation(angleInRadians)
             
         } else if sender.state == .Ended {
+            print("translation ", translation.x)
             if translation.x > 50 {
                 // animate the photo off the screen to the right
                 UIView.animateWithDuration(1, animations: { () -> Void in
@@ -37,15 +38,17 @@ class DraggableImageView: UIView {
                 })
             } else if translation.x < -50 {
                 // animate the photo off the screen to the left
-                UIView.animateWithDuration(1, animations: { () -> Void in
-                    self.imageView.center.x -= self.frame.width
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.center.x -= self.frame.width
                     }, completion: { (finished) -> Void in
-                        self.imageView.hidden = true
+                        self.hidden = true
                         
                 })
             } else {
-                imageView.center = originalCenter
-                imageView.transform = CGAffineTransformIdentity
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.center = self.originalCenter
+                    self.transform = CGAffineTransformMakeRotation(0)
+                })
             }
         }
     }
@@ -82,6 +85,7 @@ class DraggableImageView: UIView {
     }
     
     func initSubviews() {
+        self.userInteractionEnabled = true
         // standard initialization logic
         let nib = UINib(nibName: "DraggableImageView", bundle: nil)
         nib.instantiateWithOwner(self, options: nil)
