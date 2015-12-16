@@ -10,10 +10,9 @@ import UIKit
 
 class DraggableImageView: UIView {
     var originalCenter: CGPoint!
+    var callbackAfterRemoving: (() -> Void)?
     
     @IBAction func onPan(sender: UIPanGestureRecognizer) {
-        guard !hidden else { return }
-        
         let location = sender.locationInView(superview)
         let translation = sender.translationInView(superview)
         
@@ -35,14 +34,16 @@ class DraggableImageView: UIView {
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.center.x += self.frame.width
                     }, completion: { (finished) -> Void in
-                        self.hidden = true
+                        self.removeFromSuperview()
+                        self.callbackAfterRemoving?()
                 })
             } else if translation.x < -50 {
                 // animate the photo off the screen to the left
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.center.x -= self.frame.width
                     }, completion: { (finished) -> Void in
-                        self.hidden = true
+                        self.removeFromSuperview()
+                        self.callbackAfterRemoving?()
                         
                 })
             } else {
@@ -53,16 +54,11 @@ class DraggableImageView: UIView {
             }
         }
     }
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-    // Drawing code
-    }
-    */
-    
+
     @IBOutlet var contentView: UIView!
     
+    @IBOutlet weak internal var imageView: UIImageView!
+    // Make DraggableImageView behave like a UIImageView instance
     var image: UIImage? {
         set {
             imageView.image = newValue
@@ -71,9 +67,6 @@ class DraggableImageView: UIView {
             return imageView.image
         }
     }
-    
-    @IBOutlet weak var imageView: UIImageView!
-    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -86,7 +79,6 @@ class DraggableImageView: UIView {
     }
     
     func initSubviews() {
-        // standard initialization logic
         let nib = UINib(nibName: "DraggableImageView", bundle: nil)
         nib.instantiateWithOwner(self, options: nil)
         contentView.frame = bounds
