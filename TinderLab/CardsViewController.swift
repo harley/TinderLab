@@ -15,7 +15,7 @@ class CardsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let draggableImageView = DraggableImageView(frame: CGRect(x: 8, y: 72, width: 304, height: 304))
+        let draggableImageView = DraggableImageView(frame: CGRect(x: 8, y: 80, width: 304, height: 304))
         view.addSubview(draggableImageView)
         
         let tap = UITapGestureRecognizer(target: self, action: "onTapDraggable")
@@ -30,14 +30,6 @@ class CardsViewController: UIViewController {
             print("presentViewController")
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    // MARK: - Navigation
 }
 
 extension CardsViewController: UIViewControllerTransitioningDelegate {
@@ -66,22 +58,23 @@ extension CardsViewController: UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView()!
         let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toVC   = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let duration = transitionDuration(transitionContext)
         
         if isPresenting {
             containerView.addSubview(toVC.view)
             toVC.view.alpha = 0
             
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(duration, animations: { () -> Void in
                 toVC.view.alpha = 1
-                }) { (finished) -> Void in
-                    transitionContext.completeTransition(true)
+            }) { (finished) -> Void in
+                transitionContext.completeTransition(true)
             }
         } else {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 fromVC.view.alpha = 0
-                }) { (finished: Bool) -> Void in
-                    transitionContext.completeTransition(true)
-                    fromVC.view.removeFromSuperview()
+            }) { (finished: Bool) -> Void in
+                fromVC.view.removeFromSuperview()
+                transitionContext.completeTransition(true)
             }
         }
     }

@@ -12,18 +12,19 @@ class DraggableImageView: UIView {
     var originalCenter: CGPoint!
     
     @IBAction func onPan(sender: UIPanGestureRecognizer) {
-        guard !self.imageView.hidden else { return }
+        guard !hidden else { return }
         
         let location = sender.locationInView(superview)
         let translation = sender.translationInView(superview)
         
         if sender.state == .Began {
             originalCenter = center
+
         } else if sender.state == .Changed {
-            center.x = location.x
+            center.x = originalCenter.x + translation.x
             
-            let angle:CGFloat = translation.x * 30.0 / 304
-            let coeff:CGFloat = location.y > (64 + 152) ? -1 : 1
+            let angle:CGFloat = translation.x * 30.0 / frame.width
+            let coeff:CGFloat = location.y > (frame.origin.y + frame.width / 2) ? -1 : 1
             let angleInRadians = coeff * angle * CGFloat(M_PI) / 180.0
             transform = CGAffineTransformMakeRotation(angleInRadians)
             
@@ -31,7 +32,7 @@ class DraggableImageView: UIView {
             print("translation ", translation.x)
             if translation.x > 50 {
                 // animate the photo off the screen to the right
-                UIView.animateWithDuration(1, animations: { () -> Void in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.center.x += self.frame.width
                     }, completion: { (finished) -> Void in
                         self.hidden = true
@@ -45,7 +46,7 @@ class DraggableImageView: UIView {
                         
                 })
             } else {
-                UIView.animateWithDuration(1, animations: { () -> Void in
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.center = self.originalCenter
                     self.transform = CGAffineTransformMakeRotation(0)
                 })
@@ -85,13 +86,10 @@ class DraggableImageView: UIView {
     }
     
     func initSubviews() {
-        self.userInteractionEnabled = true
         // standard initialization logic
         let nib = UINib(nibName: "DraggableImageView", bundle: nil)
         nib.instantiateWithOwner(self, options: nil)
         contentView.frame = bounds
         addSubview(contentView)
-        
-        // custom initialization logic
     }
 }
