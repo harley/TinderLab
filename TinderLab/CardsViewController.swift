@@ -10,32 +10,17 @@ import UIKit
 
 class CardsViewController: UIViewController {
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBAction func onPan(sender: UIPanGestureRecognizer) {
-        let location = sender.locationInView(view)
-        if sender.state == .Began {
-            originalCenter = profileImageView.center
-        } else if sender.state == .Changed {
-            profileImageView.center.x = location.x
-        } else if sender.state == .Ended {
-            profileImageView.center = originalCenter
-        }
-    }
-    
-    var originalCenter: CGPoint!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        let draggableImageView = DraggableImageView(frame: CGRect(x: 8, y: 72, width: 304, height: 304))
+        view.addSubview(draggableImageView)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
-        originalCenter = profileImageView.frame.origin
-        
     }
     
     
